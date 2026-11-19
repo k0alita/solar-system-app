@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/planet.dart';
 import '../planet_data.dart';
+import 'detail_screen.dart';
 
 class SolarScreen extends StatefulWidget {
   const SolarScreen({super.key});
@@ -12,7 +13,7 @@ class SolarScreen extends StatefulWidget {
 class _SolarScreenState extends State<SolarScreen> {
   final List<Planet> planets = PlanetProvider.getPlanets();
 
-  Widget crearTile(Planet planet) {
+  Widget crearTile(BuildContext context, Planet planet) {
     return ListTile(
       leading: Image.asset(
         planet.image,
@@ -29,6 +30,14 @@ class _SolarScreenState extends State<SolarScreen> {
         color: Colors.grey,
         size: 15,
       ),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const DetailScreen(),
+          ),
+        );
+      },
     );
   }
 
@@ -43,7 +52,7 @@ class _SolarScreenState extends State<SolarScreen> {
       body: ListView.builder(
         itemCount: planets.length,
         itemBuilder: (context, index) {
-          return crearTile(planets[index]);
+          return crearTile(context, planets[index]);
         },
       ),
     );
