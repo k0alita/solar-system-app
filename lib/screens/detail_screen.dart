@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import '../models/planet.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+  final Planet planet;
+
+  const DetailScreen({super.key, required this.planet});
 
   @override
   Widget build(BuildContext context) {
-    final planet = ModalRoute.of(context)!.settings.arguments as Planet;
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Planet details",
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          planet.name,
+          style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         backgroundColor: Colors.grey.shade700,
@@ -25,12 +25,21 @@ class DetailScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
               Image.asset(
                 planet.image,
                 width: 300,
                 height: 300,
+              ),
+              const SizedBox(height: 40),
+              Text(
+                planet.description,
+                style: const TextStyle(
+                  fontSize: 19,
+                  color: Colors.black,
+                ),
               ),
             ],
           ),
