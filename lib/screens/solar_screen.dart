@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../models/planet.dart';
+import '../planet_data.dart';
 
 class SolarScreen extends StatefulWidget {
   const SolarScreen({super.key});
@@ -8,15 +10,25 @@ class SolarScreen extends StatefulWidget {
 }
 
 class _SolarScreenState extends State<SolarScreen> {
-  Widget crearTile(String imagen, String texto) {
+  final List<Planet> planets = PlanetProvider.getPlanets();
+
+  Widget crearTile(Planet planet) {
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),      leading: Image.asset(
-        imagen,
+      leading: Image.asset(
+        planet.image,
         width: 45,
         height: 45,
       ),
-      title: Text(texto),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 15,),
+      title: Text(planet.name),
+      subtitle: Text(
+        planet.distance,
+        style: TextStyle(color: Colors.grey[600]),
+      ),
+      trailing: const Icon(
+        Icons.arrow_forward_ios,
+        color: Colors.grey,
+        size: 15,
+      ),
     );
   }
 
@@ -28,15 +40,11 @@ class _SolarScreenState extends State<SolarScreen> {
         centerTitle: true,
         backgroundColor: Colors.grey.shade700,
       ),
-      body: ListView(
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: [
-            crearTile("assets/images/earth.png", "Earth"),
-            crearTile("assets/images/venus.png", "Venus"),
-            crearTile("assets/images/mercury.png", "Mercury"),
-          ],
-        ).toList(),
+      body: ListView.builder(
+        itemCount: planets.length,
+        itemBuilder: (context, index) {
+          return crearTile(planets[index]);
+        },
       ),
     );
   }
