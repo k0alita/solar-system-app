@@ -34,7 +34,7 @@ class _SolarScreenState extends State<SolarScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const DetailScreen(),
+            builder: (context) => DetailScreen(planet: planet),
           ),
         );
       },

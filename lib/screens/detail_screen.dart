@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../models/planet.dart';
+
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+  final Planet planet;
+
+  const DetailScreen({super.key, required this.planet});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class DetailScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               Image.asset(
-                "assets/images/earth.png",
+                planet.image,
                 width: 300,
                 height: 300,
               ),
