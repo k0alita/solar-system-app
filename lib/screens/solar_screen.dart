@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/planet.dart';
 import '../planet_data.dart';
-import 'detail_screen.dart';
 
 class SolarScreen extends StatefulWidget {
   const SolarScreen({super.key});
@@ -31,11 +30,10 @@ class _SolarScreenState extends State<SolarScreen> {
         size: 15,
       ),
       onTap: () {
-        Navigator.push(
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-            builder: (context) => DetailScreen(planet: planet),
-          ),
+          '/detail',
+          arguments: planet,
         );
       },
     );

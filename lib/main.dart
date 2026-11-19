@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solarsystemapp/screens/detail_screen.dart';
 import 'package:solarsystemapp/screens/solar_screen.dart';
 
 void main() {
@@ -10,9 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SolarScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const SolarScreen(),
+        '/detail': (context) => const DetailScreen(),
+      },
     );
   }
 }

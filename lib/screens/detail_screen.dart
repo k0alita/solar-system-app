@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-
 import '../models/planet.dart';
 
 class DetailScreen extends StatelessWidget {
-  final Planet planet;
-
-  const DetailScreen({super.key, required this.planet});
+  const DetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final planet = ModalRoute.of(context)!.settings.arguments as Planet;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Planet details", style: TextStyle(color: Colors.white),
+          "Planet details",
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         backgroundColor: Colors.grey.shade700,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white,),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
       ),
